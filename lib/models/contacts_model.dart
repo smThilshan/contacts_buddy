@@ -1,14 +1,15 @@
 class Contact {
-  final int? id;
+  final int id;
   final String firstName;
   final String lastName;
   final String mobileNumber;
 
-  Contact(
-      {this.id,
-      required this.firstName,
-      required this.lastName,
-      required this.mobileNumber});
+  Contact({
+    required this.id,
+    required this.firstName,
+    required this.lastName,
+    required this.mobileNumber,
+  });
 
   Map<String, dynamic> toMap() {
     return {

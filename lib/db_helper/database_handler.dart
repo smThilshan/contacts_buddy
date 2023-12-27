@@ -16,7 +16,7 @@ class DatabaseHandler {
       join(await getDatabasesPath(), 'contacts_database.db'),
       onCreate: (db, version) {
         return db.execute(
-          'CREATE TABLE contacts(id INTEGER PRIMARY KEY, firstName TEXT, lastName TEXT, mobileNumber TEXT)',
+          'CREATE TABLE contacts(id INTEGER PRIMARY KEY AUTOINCREMENT, firstName TEXT, lastName TEXT, mobileNumber TEXT)',
         );
       },
       version: 1,
@@ -25,7 +25,11 @@ class DatabaseHandler {
 
   Future<void> insertContact(Contact contact) async {
     final db = await database;
-    await db.insert('contacts', contact.toMap());
+    await db.insert('contacts', {
+      'firstName': contact.firstName,
+      'lastName': contact.lastName,
+      'mobileNumber': contact.mobileNumber,
+    });
   }
 
   Future<List<Contact>> getContacts() async {

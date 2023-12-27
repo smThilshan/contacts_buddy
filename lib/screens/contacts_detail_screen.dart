@@ -1,10 +1,14 @@
+import 'package:contacts_buddy/models/contacts_model.dart';
 import 'package:contacts_buddy/widgets/my_icon_button.dart';
 import 'package:contacts_buddy/widgets/my_textbox.dart';
 import 'package:flutter/material.dart';
 
 class ContactDetailScreen extends StatelessWidget {
   static const routeName = 'contact_detail_screen';
-  const ContactDetailScreen({super.key});
+
+  final Contact contact;
+
+  const ContactDetailScreen({required this.contact, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,12 +20,12 @@ class ContactDetailScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "Contacts Info",
+        title: Text(
+          "${contact.firstName} ${contact.lastName}",
           style: TextStyle(
             fontFamily: 'OpenSans',
             color: Colors.white,
-            fontWeight: FontWeight.w500,
+            // fontWeight: FontWeight.w500,
           ),
         ),
         backgroundColor: Colors.lightBlue,
@@ -53,15 +57,15 @@ class ContactDetailScreen extends StatelessWidget {
           ),
           MyTextBox(
             controller: _firstName,
-            text: "First Name",
+            text: "${contact.firstName}",
           ),
           MyTextBox(
             controller: _lastName,
-            text: "Last Name",
+            text: "${contact.lastName}",
           ),
           MyTextBox(
             controller: _mobileNumber,
-            text: "Mobile No",
+            text: "${contact.mobileNumber}",
           ),
           MyTextBox(
             controller: _address,

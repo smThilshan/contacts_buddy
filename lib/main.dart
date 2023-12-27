@@ -1,3 +1,4 @@
+import 'package:contacts_buddy/models/contacts_model.dart';
 import 'package:contacts_buddy/providers/contacts_provider.dart';
 import 'package:contacts_buddy/screens/add_contacts_screen.dart';
 import 'package:contacts_buddy/screens/contact_screen.dart';
@@ -31,8 +32,13 @@ class MyApp extends StatelessWidget {
         routes: {
           ContactScreen.routeName: (context) => const ContactScreen(),
           AddContactScreen.routeName: (context) => const AddContactScreen(),
-          ContactDetailScreen.routeName: (context) =>
-              const ContactDetailScreen(),
+          ContactDetailScreen.routeName: (context) => ContactDetailScreen(
+                  contact: Contact(
+                id: 0,
+                firstName: '',
+                lastName: '',
+                mobileNumber: '',
+              )),
           SearchContactScreen.routeName: (context) =>
               const SearchContactScreen(),
           UpdateContactScreen.routeName: (context) =>

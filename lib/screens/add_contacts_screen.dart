@@ -6,6 +6,12 @@ import '../db_helper/database_handler.dart';
 import '../models/contacts_model.dart';
 import '../providers/contacts_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter/material.dart';
+import '../models/contacts_model.dart';
+import '../providers/contacts_provider.dart';
+import '../widgets/my_icon_button.dart';
+import '../widgets/my_textbox.dart';
+import 'package:provider/provider.dart';
 
 class AddContactScreen extends StatelessWidget {
   static const routeName = 'add_contact_screen';
@@ -17,25 +23,13 @@ class AddContactScreen extends StatelessWidget {
     final TextEditingController _firstName = TextEditingController();
     final TextEditingController _lastName = TextEditingController();
     final TextEditingController _mobileNumber = TextEditingController();
-    // final TextEditingController _address = TextEditingController();
-    // final TextEditingController _email = TextEditingController();
 
     Future<void> _saveContact() async {
-      // Create a new Contact instance from the input data
-      // Contact newContact = Contact(
-
-      // );
-
-      // // Insert the contact into the database
-      // await DatabaseHandler().insertContact(newContact);
-
-      // print('YYYYYYYYYYY');
-
-      // Log a message to check if the insertion is successful
-
       ContactsProvider contactsProvider =
           Provider.of<ContactsProvider>(context, listen: false);
+
       Contact newContact = Contact(
+        id: 0, // You may need to assign the correct value for the id
         firstName: _firstName.text,
         lastName: _lastName.text,
         mobileNumber: _mobileNumber.text,
@@ -43,10 +37,7 @@ class AddContactScreen extends StatelessWidget {
 
       await contactsProvider.addContact(newContact);
 
-      // print('Contact inserted: $newContact');
-
       Navigator.pop(context);
-      // Navigator.popAndPushNamed(context, ContactScreen.routeName);
     }
 
     return Scaffold(
@@ -68,24 +59,20 @@ class AddContactScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(height: 12),
-              const CircleAvatar(
-                radius: 60.0, // Adjust the size as needed
-                backgroundImage:
-                    AssetImage('assets/profile_image.jpg'), // Use your image
-              ),
+              // const CircleAvatar(
+              //   radius: 60.0,
+              //   backgroundImage: AssetImage('assets/profile.jpg'),
+              // ),
               const SizedBox(height: 15),
               MyIconButton(
-                  onClick: () {},
-                  btnText: "Add image",
-                  btnIcon: Icon(Icons.add)),
+                onClick: () {},
+                btnText: "Add image",
+                btnIcon: Icon(Icons.add),
+              ),
               SizedBox(height: 10),
-
-              // Add more details or actions as needed
             ],
           ),
-          SizedBox(
-            height: 15,
-          ),
+          SizedBox(height: 15),
           MyTextBox(
             controller: _firstName,
             text: "First Name",
@@ -98,34 +85,24 @@ class AddContactScreen extends StatelessWidget {
             controller: _mobileNumber,
             text: "Mobile No",
           ),
-          // MyTextBox(
-          //   controller: _address,
-          //   text: "Address",
-          // ),
-          // MyTextBox(
-          //   controller: _email,
-          //   text: "Email",
-          // ),
-          const SizedBox(
-            height: 25,
-          ),
+          const SizedBox(height: 25),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Expanded(
                 child: MyIconButton(
-                    onClick: () {},
-                    btnText: "Cancel",
-                    btnIcon: Icon(Icons.cancel_rounded)),
+                  onClick: () {},
+                  btnText: "Cancel",
+                  btnIcon: Icon(Icons.cancel_rounded),
+                ),
               ),
-              const SizedBox(
-                width: 20,
-              ),
+              const SizedBox(width: 20),
               Expanded(
                 child: MyIconButton(
-                    onClick: _saveContact,
-                    btnText: "Save",
-                    btnIcon: Icon(Icons.save)),
+                  onClick: _saveContact,
+                  btnText: "Save",
+                  btnIcon: Icon(Icons.save),
+                ),
               ),
             ],
           ),

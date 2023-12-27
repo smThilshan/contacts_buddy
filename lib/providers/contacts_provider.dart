@@ -8,14 +8,19 @@ class ContactsProvider with ChangeNotifier {
   List<Contact> get contacts => _contacts;
 
   Future<void> loadContacts() async {
-    // Load contacts from the database or any other data source
     _contacts = await DatabaseHandler().getContacts();
     notifyListeners();
   }
 
+  Future<List<Contact>> oldloadContacts() async {
+    _contacts = await DatabaseHandler().getContacts();
+    notifyListeners();
+    return _contacts; // Return the list of contacts
+  }
+
   Future<void> addContact(Contact contact) async {
     await DatabaseHandler().insertContact(contact);
-    _updateContacts();
+    await _updateContacts();
   }
 
   Future<void> updateContact(Contact contact) async {

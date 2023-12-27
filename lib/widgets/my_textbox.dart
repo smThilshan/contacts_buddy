@@ -1,12 +1,16 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 
 class MyTextBox extends StatelessWidget {
   final TextEditingController controller;
   final String text;
+  final bool? boolValue;
 
   const MyTextBox({
     required this.controller,
     required this.text,
+    this.boolValue,
     Key? key,
   }) : super(key: key);
 
@@ -17,6 +21,7 @@ class MyTextBox extends StatelessWidget {
       child: TextField(
         onTap: () {},
         controller: controller,
+        readOnly: boolValue ?? false,
         decoration: InputDecoration(
           labelStyle: const TextStyle(color: Colors.black),
           fillColor: Colors.white,

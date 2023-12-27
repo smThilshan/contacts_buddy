@@ -45,6 +45,9 @@ class _ContactScreenState extends State<ContactScreen> {
           } else {
             List<Contact> contacts = snapshot.data!;
 
+            // Sort contacts A-Z by first name
+            contacts.sort((a, b) => a.firstName.compareTo(b.firstName));
+
             return Container(
               padding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
               child: Column(

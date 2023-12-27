@@ -31,11 +31,12 @@ class ContactsProvider with ChangeNotifier {
   Future<void> deleteContact(int id) async {
     await DatabaseHandler().deleteContact(id);
     _updateContacts();
+    notifyListeners();
   }
 
   Future<void> _updateContacts() async {
     _contacts = await DatabaseHandler().getContacts();
     notifyListeners();
-    print('Contacts updated: $_contacts');
+    // print('Contacts updated: $_contacts');
   }
 }

@@ -41,7 +41,7 @@ class UpdateContactScreen extends StatelessWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: 12),
+              const SizedBox(height: 12),
               const CircleAvatar(
                 radius: 60.0, // Adjust the size as needed
                 backgroundImage:
@@ -52,12 +52,12 @@ class UpdateContactScreen extends StatelessWidget {
                   onClick: () {},
                   btnText: "Change image",
                   btnIcon: Icon(Icons.edit)),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
 
               // Add more details or actions as needed
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
           MyTextBox(
@@ -90,7 +90,7 @@ class UpdateContactScreen extends StatelessWidget {
                 child: MyIconButton(
                     onClick: () {},
                     btnText: "Back",
-                    btnIcon: Icon(Icons.arrow_back_ios)),
+                    btnIcon: const Icon(Icons.arrow_back_ios)),
               ),
               const SizedBox(
                 width: 10,
@@ -98,7 +98,7 @@ class UpdateContactScreen extends StatelessWidget {
               Expanded(
                 child: MyIconButton(
                     onClick: () async {
-                      print("Save Button Pressed");
+                      // print("Save Button Pressed");
 
                       final ContactsProvider contactsProvider =
                           context.read<ContactsProvider>();
@@ -111,16 +111,14 @@ class UpdateContactScreen extends StatelessWidget {
 
                       await contactsProvider.updateContact(updatedContact);
 
-                      // Navigate back to the ContactDetailScreen
-                      // Navigator.pop(context);
-                      print("Before Navigator.popUntil");
+                      // print("Before Navigator.popUntil");
                       Navigator.pop(context);
                       Navigator.pop(context);
 
-                      print("After Navigator.popUntil");
+                      // print("After Navigator.popUntil");
                     },
                     btnText: "Save",
-                    btnIcon: Icon(Icons.save)),
+                    btnIcon: const Icon(Icons.save)),
               ),
             ],
           ),

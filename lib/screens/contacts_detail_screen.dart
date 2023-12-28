@@ -27,7 +27,7 @@ class ContactDetailScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           "${contact.firstName} ${contact.lastName}",
-          style: TextStyle(
+          style: const TextStyle(
             fontFamily: 'OpenSans',
             color: Colors.white,
             // fontWeight: FontWeight.w500,
@@ -57,7 +57,7 @@ class ContactDetailScreen extends StatelessWidget {
               // Add more details or actions as needed
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 15,
           ),
           MyTextBox(
@@ -101,26 +101,26 @@ class ContactDetailScreen extends StatelessWidget {
               Expanded(
                 child: MyIconButton(
                     onClick: () async {
-// Show a confirmation dialog before deleting
+// Show confirmation dialog before deleting
                       bool confirmDelete = await showDialog(
                         context: context,
                         builder: (BuildContext context) {
                           return AlertDialog(
-                            title: Text("Confirm Delete"),
-                            content: Text(
+                            title: const Text("Confirm Delete"),
+                            content: const Text(
                                 "Are you sure you want to delete this contact?"),
                             actions: <Widget>[
                               TextButton(
                                 onPressed: () {
                                   Navigator.of(context).pop(false);
                                 },
-                                child: Text("Cancel"),
+                                child: const Text("Cancel"),
                               ),
                               TextButton(
                                 onPressed: () {
                                   Navigator.of(context).pop(true);
                                 },
-                                child: Text("Delete"),
+                                child: const Text("Delete"),
                               ),
                             ],
                           );
@@ -136,7 +136,7 @@ class ContactDetailScreen extends StatelessWidget {
                       }
                     },
                     btnText: "Delete",
-                    btnIcon: Icon(Icons.delete)),
+                    btnIcon: const Icon(Icons.delete)),
               ),
               const SizedBox(
                 width: 10,
@@ -154,18 +154,12 @@ class ContactDetailScreen extends StatelessWidget {
                       );
                     },
                     btnText: "Edit",
-                    btnIcon: Icon(Icons.edit)),
+                    btnIcon: const Icon(Icons.edit)),
               ),
             ],
           ),
         ],
       ),
-
-      // body: Center(
-      //   child: SingleChildScrollView(
-      //     child:
-      //   ),
-      // ),
     );
   }
 }

@@ -39,7 +39,7 @@ class _ContactScreenState extends State<ContactScreen> {
         future: contactsProvider.oldloadContacts(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
+            return const CircularProgressIndicator();
           } else if (snapshot.hasError) {
             return Text('Error: ${snapshot.error}');
           } else {
@@ -61,19 +61,19 @@ class _ContactScreenState extends State<ContactScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       MyIconButton(
-                        btnIcon: Icon(Icons.add),
+                        btnIcon: const Icon(Icons.add),
                         btnText: "Add Contacts",
                         onClick: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => AddContactScreen(),
+                              builder: (context) => const AddContactScreen(),
                             ),
                           );
                         },
                       ),
                       MyIconButton(
-                        btnIcon: Icon(Icons.search),
+                        btnIcon: const Icon(Icons.search),
                         btnText: "Search Contacts",
                         onClick: () {
                           Navigator.push(

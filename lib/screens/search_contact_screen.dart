@@ -1,4 +1,3 @@
-import 'package:contacts_buddy/widgets/my_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:contacts_buddy/models/contacts_model.dart';
 import 'package:contacts_buddy/providers/contacts_provider.dart';
@@ -7,6 +6,8 @@ import 'contacts_detail_screen.dart';
 
 class SearchContactScreen extends StatefulWidget {
   static const routeName = 'search_contact_screen';
+
+  const SearchContactScreen({super.key});
 
   @override
   _SearchContactScreenState createState() => _SearchContactScreenState();
@@ -31,7 +32,7 @@ class _SearchContactScreenState extends State<SearchContactScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Search Contacts",
           style: TextStyle(
             fontFamily: 'OpenSans',
@@ -40,7 +41,7 @@ class _SearchContactScreenState extends State<SearchContactScreen> {
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.clear),
+            icon: const Icon(Icons.clear),
             onPressed: () {
               setState(() {
                 _searchController.clear();
@@ -61,8 +62,20 @@ class _SearchContactScreenState extends State<SearchContactScreen> {
                 _performSearch(context, query);
               },
               decoration: InputDecoration(
-                labelText: 'Search',
-                border: OutlineInputBorder(),
+                labelStyle: const TextStyle(color: Colors.black),
+                fillColor: Colors.white,
+                labelText: "Search",
+                contentPadding: const EdgeInsets.symmetric(
+                    vertical: 14.0,
+                    horizontal: 12.0), // Adjust the padding as needed
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                  borderSide: BorderSide(color: Colors.blue.shade400),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                  borderSide: BorderSide(color: Colors.blue.shade400),
+                ),
               ),
             ),
           ),
@@ -99,10 +112,6 @@ class _SearchContactScreenState extends State<SearchContactScreen> {
   }
 
   void _performSearch(BuildContext context, String query) {
-    // Perform search and update the UI
-    // You can implement debouncing or use a Future.delayed for more sophisticated search handling
-    setState(() {
-      // Update the UI with search results
-    });
+    setState(() {});
   }
 }

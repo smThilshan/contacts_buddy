@@ -1,16 +1,8 @@
-import 'package:contacts_buddy/screens/contact_screen.dart';
 import 'package:contacts_buddy/widgets/my_icon_button.dart';
 import 'package:contacts_buddy/widgets/my_textbox.dart';
 import 'package:flutter/material.dart';
-import '../db_helper/database_handler.dart';
 import '../models/contacts_model.dart';
 import '../providers/contacts_provider.dart';
-import 'package:provider/provider.dart';
-import 'package:flutter/material.dart';
-import '../models/contacts_model.dart';
-import '../providers/contacts_provider.dart';
-import '../widgets/my_icon_button.dart';
-import '../widgets/my_textbox.dart';
 import 'package:provider/provider.dart';
 
 class AddContactScreen extends StatelessWidget {
@@ -58,7 +50,7 @@ class AddContactScreen extends StatelessWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: 12),
+              const SizedBox(height: 12),
               // const CircleAvatar(
               //   radius: 60.0,
               //   backgroundImage: AssetImage('assets/profile.jpg'),
@@ -69,10 +61,10 @@ class AddContactScreen extends StatelessWidget {
                 btnText: "Add image",
                 btnIcon: Icon(Icons.add),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
             ],
           ),
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
           MyTextBox(
             controller: _firstName,
             text: "First Name",
@@ -93,7 +85,7 @@ class AddContactScreen extends StatelessWidget {
                 child: MyIconButton(
                   onClick: () {},
                   btnText: "Cancel",
-                  btnIcon: Icon(Icons.cancel_rounded),
+                  btnIcon: const Icon(Icons.cancel_rounded),
                 ),
               ),
               const SizedBox(width: 20),
@@ -101,7 +93,7 @@ class AddContactScreen extends StatelessWidget {
                 child: MyIconButton(
                   onClick: _saveContact,
                   btnText: "Save",
-                  btnIcon: Icon(Icons.save),
+                  btnIcon: const Icon(Icons.save),
                 ),
               ),
             ],

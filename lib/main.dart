@@ -39,8 +39,7 @@ class MyApp extends StatelessWidget {
                 lastName: '',
                 mobileNumber: '',
               )),
-          SearchContactScreen.routeName: (context) =>
-              const SearchContactScreen(),
+          SearchContactScreen.routeName: (context) => SearchContactScreen(),
           UpdateContactScreen.routeName: (context) => UpdateContactScreen(
                 contact: Contact(
                   id: 0,

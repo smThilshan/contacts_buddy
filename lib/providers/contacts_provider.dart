@@ -39,4 +39,13 @@ class ContactsProvider with ChangeNotifier {
     notifyListeners();
     // print('Contacts updated: $_contacts');
   }
+
+  List<Contact> searchContacts(String query) {
+    // Implement the search logic here
+    // For example, filter the contacts list based on the query
+    return _contacts.where((contact) {
+      return contact.firstName.toLowerCase().contains(query.toLowerCase()) ||
+          contact.lastName.toLowerCase().contains(query.toLowerCase());
+    }).toList();
+  }
 }

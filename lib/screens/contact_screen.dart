@@ -19,8 +19,6 @@ class ContactScreen extends StatefulWidget {
 class _ContactScreenState extends State<ContactScreen> {
   @override
   Widget build(BuildContext context) {
-    ContactsProvider contactsProvider = context.read<ContactsProvider>();
-
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -35,90 +33,80 @@ class _ContactScreenState extends State<ContactScreen> {
         backgroundColor: Colors.lightBlue,
         centerTitle: true,
       ),
-      body: FutureBuilder<List<Contact>>(
-        future: contactsProvider.oldloadContacts(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const CircularProgressIndicator();
-          } else if (snapshot.hasError) {
-            return Text('Error: ${snapshot.error}');
-          } else {
-            List<Contact> contacts = snapshot.data!;
+      body: Consumer<ContactsProvider>(
+        builder: (context, contactsProvider, _) {
+          List<Contact> contacts = contactsProvider.contacts;
 
-            // Sort contacts A-Z by first name
-            contacts.sort((a, b) => a.firstName.compareTo(b.firstName));
-
-            return Container(
-              padding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(
-                    height: 25,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      MyIconButton(
-                        btnIcon: const Icon(Icons.add),
-                        btnText: "Add Contacts",
-                        onClick: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const AddContactScreen(),
-                            ),
-                          );
-                        },
-                      ),
-                      MyIconButton(
-                        btnIcon: const Icon(Icons.search),
-                        btnText: "Search Contacts",
-                        onClick: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => SearchContactScreen(),
-                            ),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 15),
-                  const Divider(),
-                  const SizedBox(height: 10),
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: contacts.length,
-                      itemBuilder: (_, index) => Card(
-                        margin: const EdgeInsets.symmetric(
-                          vertical: 5,
-                          horizontal: 5,
-                        ),
-                        child: ListTile(
-                          title: Text(
-                            '${contacts[index].firstName} ${contacts[index].lastName}',
+          return Container(
+            padding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  height: 25,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    MyIconButton(
+                      btnIcon: Icon(Icons.add),
+                      btnText: "Add Contacts",
+                      onClick: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => AddContactScreen(),
                           ),
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => ContactDetailScreen(
-                                  contact: contacts[index],
-                                ),
-                              ),
-                            );
-                          },
+                        );
+                      },
+                    ),
+                    MyIconButton(
+                      btnIcon: Icon(Icons.search),
+                      btnText: "Search Contacts",
+                      onClick: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SearchContactScreen(),
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 15),
+                const Divider(),
+                const SizedBox(height: 10),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: contacts.length,
+                    itemBuilder: (_, index) => Card(
+                      margin: const EdgeInsets.symmetric(
+                        vertical: 5,
+                        horizontal: 5,
+                      ),
+                      child: ListTile(
+                        title: Text(
+                          '${contacts[index].firstName} ${contacts[index].lastName}',
                         ),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ContactDetailScreen(
+                                contact: contacts[index],
+                              ),
+                            ),
+                          );
+                        },
                       ),
                     ),
                   ),
-                ],
-              ),
-            );
-          }
+                ),
+              ],
+            ),
+          );
         },
       ),
     );

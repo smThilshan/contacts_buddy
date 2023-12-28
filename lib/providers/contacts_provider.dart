@@ -14,6 +14,7 @@ class ContactsProvider with ChangeNotifier {
 
   Future<List<Contact>> oldloadContacts() async {
     _contacts = await DatabaseHandler().getContacts();
+    _updateContacts;
     notifyListeners();
     return _contacts; // Return the list of contacts
   }
